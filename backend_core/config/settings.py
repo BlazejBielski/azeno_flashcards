@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'users.apps.UsersConfig',
+    'flashcards.apps.FlashcardsConfig'
+
 ]
 
 MIDDLEWARE = [
