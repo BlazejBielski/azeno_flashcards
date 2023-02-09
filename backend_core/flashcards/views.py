@@ -5,11 +5,11 @@ from .models import FlashCard
 from .serializers import FlashCardSerializer
 
 
-class FlashCardView(ListAPIView):
+class FlashCardView(ListCreateAPIView):
+    permission_classes = [IsAuthenticated]
     serializer_class = FlashCardSerializer
 
     def get_queryset(self):
-
         rating = self.kwargs.get('rating', 0)
 
         return FlashCard.objects.filter(rating__gte=rating)
@@ -18,11 +18,3 @@ class FlashCardView(ListAPIView):
 class FlashCardItemView(RetrieveUpdateDestroyAPIView):
     queryset = FlashCard.objects.all()
     serializer_class = FlashCardSerializer
-
-
-class FlashCardCreate(ListCreateAPIView):
-    permission_classes = [IsAuthenticated]
-    serializer_class = FlashCardSerializer
-
-
-
