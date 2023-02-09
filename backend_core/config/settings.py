@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'rest_framework',
+    'drf_spectacular',
+
     'users.apps.UsersConfig',
     'flashcards.apps.FlashcardsConfig'
 
@@ -143,4 +146,21 @@ LOGGING = {
     "handlers": {"console": {"class": "logging.StreamHandler"}},
     "loggers": {"django.db.backends": {"level": "DEBUG"}},
     "root": {"handlers": ["console"]},
+}
+
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.AllowAny",
+    ],
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.SessionAuthentication"
+    ],
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Azeno Flashcards",
+    "DESCRIPTION": "Not yet",
+    "VERSION": "1.0.0",
 }
