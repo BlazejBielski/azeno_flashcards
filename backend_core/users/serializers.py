@@ -9,11 +9,6 @@ class CustomUserSerializer(ModelSerializer):
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
-        # password = validated_data.get('password', None)
         instance = self.Meta.model.objects.create_user(**validated_data)
-        # if password is not None:
-        #     instance.set_password(password)
-        #
-        # instance.create_user()
         return instance
 
