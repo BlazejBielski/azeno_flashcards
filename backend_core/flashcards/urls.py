@@ -8,6 +8,7 @@ app_name = 'flashcards'
 
 router = DefaultRouter()
 router.register(r'decks', viewsets.DeckViewSet, basename='deck')
+router.register(r'users/decks', viewsets.DeckOwnerViewSet, basename='deck_owner')
 
 urlpatterns = [
     path('flashcards/', views.FlashCardView.as_view(), name='flashcards'),

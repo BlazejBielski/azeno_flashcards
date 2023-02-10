@@ -28,6 +28,12 @@ SECRET_KEY = 'django-insecure-l20fwnpa^6tjqzo9%eaa-g41g9b@8+^doto!6%kuqyhro5p2np
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# Django debug toolbar
+if DEBUG:
+    import socket  # only if you haven't already imported this
+    hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+    INTERNAL_IPS = [ip[: ip.rfind(".")] + ".1" for ip in ips] + ["127.0.0.1", "10.0.2.2"]
+
 ALLOWED_HOSTS = ['0.0.0.0', 'localhost', 'backend_core']
 
 
@@ -45,6 +51,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
     'drf_spectacular',
+    'debug_toolbar',
 
     'users.apps.UsersConfig',
     'flashcards.apps.FlashcardsConfig'
@@ -52,6 +59,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
